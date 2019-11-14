@@ -15,7 +15,7 @@ uploadArchives {
         //这里就是最后输出地址，在自己电脑上新建个文件夹，把文件夹路径粘贴在此
         //注意”file://“ + 路径，有三个斜杠，别漏了
         // repository(url: "file://${projectDir}/maven")
-        repository(url: uri("."))
+        // repository(url: uri("."))
 
         /*pom.project {
             groupId project.PUBLISH_GROUP_ID
@@ -26,9 +26,18 @@ uploadArchives {
         // repository(url: "https://github.com/Ygh-Googol/Star/releases") {
         //     authentication(userName: "820858929@qq.com", password: "GoodLife@123")
         // }
-        pom.groupId = "com.star"// 唯一标识（通常为模块包名，也可以任意）
-        pom.artifactId = "Star" // 项目名称（通常为类库模块名称，也可以任意）
-        pom.version = "1.0.0" // 版本号
+        pom.groupId = GROUPID// 唯一标识（通常为模块包名，也可以任意）
+        pom.artifactId = ARTIFACTID // 项目名称（通常为类库模块名称，也可以任意）
+        pom.version = android.defaultConfig.versionName // 版本号
+
+        // println("name -> ${NEXUS_URL}\npassword -> ${NEXUS_USERNAME}\nurl -> ${NEXUS_PASSWORD}")
+
+        repository(url: "${NEXUS_URL}/repository/maven-releases/") {
+            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        }
+        snapshotRepository(url: "${NEXUS_URL}/repository/maven-snapshots") {
+            authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+        }
     }
 }
 
