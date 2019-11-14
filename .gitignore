@@ -6,3 +6,4 @@
 .gradle
 .DS_Store
 *official
+*.7z
